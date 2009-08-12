@@ -138,7 +138,7 @@ derror(Display*, char *errorstr)
 void
 usage(void)
 {
-	fprint(2, "usage: rio [-f font] [-i initcmd] [-k kbdcmd] [-n] [-s] [-b 0xColor]\n");
+	fprint(2, "usage: rio [-f font] [-i initcmd] [-k kbdcmd] [-n] [-s] [-b 0xnnnnnnnn]\n");
 	exits("usage");
 }
 
@@ -157,6 +157,7 @@ threadmain(int argc, char *argv[])
 	}
 	initstr = nil;
 	kbdin = nil;
+	bgcolor = 0x777777FF; // default bg color
 	maxtab = 0;
 	ARGBEGIN{
 	case 'f':
@@ -181,6 +182,9 @@ threadmain(int argc, char *argv[])
 		break;
 	case 's':
 		scrolling = TRUE;
+		break;
+	case 'b':
+		bgcolor = atoi(ARGF());
 		break;
 	}ARGEND
 
