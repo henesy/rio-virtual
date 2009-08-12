@@ -4,5 +4,5 @@ the different virtual desktops listed.
 
 To my knowledge, this works just like p9p rio's virtual desktops.
 
-Update: Changed vswitch() so it first undraws the old windows, *then*
-redraws the new ones.  Seems slightly better.
+The new option -n will enable "nostalgia mode", which for now emulates
+the 8½ window border color and style.
