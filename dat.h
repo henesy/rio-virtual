@@ -48,7 +48,7 @@ typedef	struct	Xfid Xfid;
 enum
 {
 	Selborder		= 4,		/* border of selected window */
-	Unselborder	= 2,		/* border of unselected window */
+	Unselborder	= 1,		/* border of unselected window */
 	Scrollwid 		= 12,		/* width of scroll bar */
 	Scrollgap 		= 4,		/* gap right of scroll bar */
 	BIG			= 3,		/* factor by which window dimension can exceed screen */
@@ -341,5 +341,6 @@ int		errorshouldabort;
 int		menuing;		/* menu action is pending; waiting for window to be indicated */
 int		snarfversion;	/* updated each time it is written */
 int		messagesize;		/* negotiated in 9P version setup */
-int		nostalgia;
-int		bgcolor;
+
+int		nostalgia;	/* selects between regular windows (0) and 8½ windows (1) */
+int		bgcolor;	/* the background color */
