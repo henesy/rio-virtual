@@ -138,7 +138,7 @@ derror(Display*, char *errorstr)
 void
 usage(void)
 {
-	fprint(2, "usage: rio [-f font] [-i initcmd] [-k kbdcmd] [-s] [-b 0xColor]\n");
+	fprint(2, "usage: rio [-f font] [-i initcmd] [-k kbdcmd] [-n] [-s] [-b 0xColor]\n");
 	exits("usage");
 }
 
@@ -175,6 +175,9 @@ threadmain(int argc, char *argv[])
 		kbdin = ARGF();
 		if(kbdin == nil)
 			usage();
+		break;
+	case 'n':
+		nostalgia = 1;
 		break;
 	case 's':
 		scrolling = TRUE;

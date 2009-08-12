@@ -50,10 +50,13 @@ wmk(Image *i, Mousectl *mc, Channel *ck, Channel *cctl, int scrolling)
 		cols[BORD] = allocimage(display, Rect(0,0,1,1), CMAP8, 1, 0x999999FF);
 		cols[TEXT] = display->black;
 		cols[HTEXT] = display->black;
-//		titlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DGreygreen);
-//		lighttitlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DPalegreygreen);
-		titlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DBlack);
-		lighttitlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, 0x333333FF);
+		if (nostalgia) {
+			titlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DBlack);
+			lighttitlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DBlack);
+		} else {
+			titlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DGreygreen);
+			lighttitlecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DPalegreygreen);
+		}
 		whitecol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DWhite);
 		holdcol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DMedblue);
 		lightholdcol = allocimage(display, Rect(0,0,1,1), CMAP8, 1, DGreyblue);
@@ -1166,11 +1169,15 @@ wborder(Window *w, int type)
 			col = lighttitlecol;
 	}
 
-	if (type == Selborder) {
-		border(w->i, w->i->r, Selborder, col, ZP);
+	if (nostalgia) {
+		if (type == Selborder) {
+			border(w->i, w->i->r, Selborder, col, ZP);
+		} else {
+			border(w->i, w->i->r, Selborder, whitecol, ZP);
+			border(w->i, w->i->r, Unselborder, col, ZP);
+		}
 	} else {
-		border(w->i, w->i->r, Selborder, whitecol, ZP);
-		border(w->i, w->i->r, Unselborder, col, ZP);
+		border(w->i, w->i->r, Selborder, col, ZP);
 	}
 }
 
