@@ -1,0 +1,8 @@
+Just do a mk and run the resulting binary.  Rio works as normal,
+except that mid-clicking outside of any window brings up a menu with
+the different virtual desktops listed.
+
+To my knowledge, this works just like p9p rio's virtual desktops.
+
+Update: Changed vswitch() so it first undraws the old windows, *then*
+redraws the new ones.  Seems slightly better.
