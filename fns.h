@@ -30,7 +30,7 @@ void	putsnarf(void);
 void	getsnarf(void);
 void	timerinit(void);
 int	goodrect(Rectangle);
-void vswitch(void);
+void vswitch(int);
 
 #define	runemalloc(n)		malloc((n)*sizeof(Rune))
 #define	runerealloc(a, n)	realloc(a, (n)*sizeof(Rune))

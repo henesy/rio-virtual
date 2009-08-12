@@ -673,7 +673,7 @@ resized(void)
 	}
 	viewr = screen->r;
 	flushimage(display, 1);
-	vswitch(); // This is a stupid and ugly hack but I'm lazy
+	vswitch(cvirt); // This is a stupid and ugly hack but I'm lazy
 }
 
 void
@@ -726,8 +726,8 @@ button2virt(void)
 	case -1:
 		break;
 	default:
-		cvirt = i;
-		vswitch();
+//		cvirt = i;
+		vswitch(i);
 		break;
 	}
 }
@@ -1118,29 +1118,32 @@ move(void)
 }
 
 void
-vswitch(void) {
-	int i;
+vswitch(int nv) {
+	int i, j, ishidden;
 	Image *f;
 	Window *w;
 
 	for (i = 0; i < nwindow; i++) {
 		w = window[i];
-		if (w->virt == cvirt) {
-			//w = hidden[h];
-			f = allocwindow(wscreen, w->i->r, Refbackup, DWhite);
-			if(f){
-				//--nhidden;
-				//memmove(hidden+h, hidden+h+1, (nhidden-h)*sizeof(Window*));
-				wsendctlmesg(w, Reshaped, w->i->r, f);
+		if (w->virt == nv) {
+			ishidden = 0;
+			for (j = 0; j < nhidden; j++)
+				if (hidden[j] == w)
+					ishidden = 1;
+
+			if (!ishidden) {
+				f = allocwindow(wscreen, w->i->r, Refbackup, DWhite);
+				if(f)
+					wsendctlmesg(w, Reshaped, w->i->r, f);
 			}
-		} else if (w->virt != cvirt) {
+		} else if (w->virt != nv && w->virt == cvirt) {
 			f = allocimage(display, w->screenr, w->i->chan, 0, DWhite);
 			if(f){
-				//hidden[nhidden++] = w;
 				wsendctlmesg(w, Reshaped, ZR, f);
 			}
 		}
 	}
+	cvirt = nv;
 }
 
 int
