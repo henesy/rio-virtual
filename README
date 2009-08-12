@@ -4,5 +4,12 @@ the different virtual desktops listed.
 
 To my knowledge, this works just like p9p rio's virtual desktops.
 
-The new option -n will enable "nostalgia mode", which for now emulates
-the 8½ window border color and style.
+The new options:
+
+'-n' will enable "nostalgia mode", which for now emulates the 8½
+window border color and style.
+
+'-b 0xrrggbbFF' will set the background color to rrggbb.  The trailing
+'FF' does not appear to be important.  The default color is
+0x777777FF.
+
