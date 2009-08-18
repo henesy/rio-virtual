@@ -157,7 +157,6 @@ threadmain(int argc, char *argv[])
 	}
 	initstr = nil;
 	kbdin = nil;
-	bgcolor = 0x777777FF; // default bg color
 	maxtab = 0;
 	ARGBEGIN{
 	case 'f':
@@ -187,6 +186,12 @@ threadmain(int argc, char *argv[])
 		bgcolor = atoi(ARGF());
 		break;
 	}ARGEND
+
+	if (!bgcolor)
+		if (nostalgia)
+			bgcolor = 0xBBBBBBFF;
+		else
+			bgcolor = 0x777777FF; // default bg color
 
 	mainpid = getpid();
 	if(getwd(buf, sizeof buf) == nil)
