@@ -31,6 +31,7 @@ void	getsnarf(void);
 void	timerinit(void);
 int	goodrect(Rectangle);
 void vswitch(int);
+int nmenuhit(int, Mousectl*, Menu*, Screen*); /* for nostalgia */
 
 #define	runemalloc(n)		malloc((n)*sizeof(Rune))
 #define	runerealloc(a, n)	realloc(a, (n)*sizeof(Rune))

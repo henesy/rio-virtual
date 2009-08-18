@@ -698,7 +698,12 @@ button3menu(void)
 	menu3str[i+Hidden] = nil;
 
 	sweeping = 1;
-	switch(i = menuhit(3, mousectl, &menu3, wscreen)){
+	if (nostalgia)
+		i = nmenuhit(3, mousectl, &menu3, wscreen);
+	else
+		i = menuhit(3, mousectl, &menu3, wscreen);
+
+	switch(i){
 	case -1:
 		break;
 	case New:
@@ -734,7 +739,12 @@ button2virt(void)
 {
 	int i;
 
-	switch(i = menuhit(2, mousectl, &menu2virt, wscreen)){
+	if (nostalgia)
+		i = nmenuhit(2, mousectl, &menu2virt, wscreen);
+	else
+		i = menuhit(2, mousectl, &menu2virt, wscreen);
+
+	switch(i){
 	case -1:
 		break;
 	default:
@@ -747,6 +757,8 @@ button2virt(void)
 void
 button2menu(Window *w)
 {
+	int i;
+
 	if(w->deleted)
 		return;
 	incref(w);
@@ -754,7 +766,13 @@ button2menu(Window *w)
 		menu2str[Scroll] = "noscroll";
 	else
 		menu2str[Scroll] = "scroll";
-	switch(menuhit(2, mousectl, &menu2, wscreen)){
+
+	if (nostalgia)
+		i = nmenuhit(2, mousectl, &menu2, wscreen);
+	else
+		i = menuhit(2, mousectl, &menu2, wscreen);
+
+	switch(i){
 	case Cut:
 		wsnarf(w);
 		wcut(w);
