@@ -6,6 +6,7 @@ OFILES=\
 	rio.$O\
 	data.$O\
 	fsys.$O\
+	nmenuhit.$O\
 	scrl.$O\
 	time.$O\
 	util.$O\
